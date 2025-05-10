@@ -1,8 +1,9 @@
 import requests
 import cohere
-from config import WEATHER_API_KEY, COHERE_API_KEY
 from utils import kelvin_to_celsius
 
+WEATHER_API_KEY = "2bf4686b58e818560cb0aa13c5fd0722"
+COHERE_API_KEY = "S9HZs7bl6TAoVZHrPmTfK6ywe7gUVE3hMW4M6NGN"
 co = cohere.Client(COHERE_API_KEY)
 
 def get_weather_data(city):

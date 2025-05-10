@@ -4,10 +4,11 @@ from ui import display_current_weather, display_weekly_forecast, plot_temperatur
 from utils import set_local_background, get_background_image_for_weather
 
 def main():
-    set_local_background("WeatherBackground1.jpg")
+    set_local_background("Pictures/WeatherBackground1.jpg")
     st.sidebar.title("⛅ Weather Forecast AI")
 
-    city = st.sidebar.text_input("Enter City Name:")
+    city = st.sidebar.text_input("Enter City Name:").strip().title()
+    
     if st.sidebar.button("Get Weather"):
         st.title(f"Weather Updates for {city}:")
         with st.spinner('Fetching weather data...'):
@@ -30,9 +31,9 @@ def main():
                 else:
                     st.error("Error fetching forecast!")
             else:
-                st.error("‼ Error: City not found ‼")
+                st.error(f"‼ Error: {weather_data.get('message', 'City not found')} ‼")
     else:
-# Intro Animation
+        # Intro Animation
         st.markdown("""
         <style>
         .typing {

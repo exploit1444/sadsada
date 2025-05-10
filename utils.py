@@ -38,14 +38,14 @@ def set_local_background(image_path):
 def get_background_image_for_weather(description):
     desc = description.lower()
     if "clear" in desc:
-        return "assets/sunny.jpg"
+        return "Pictures/sunny.jpg"
     elif "cloud" in desc:
-        return "assets/cloudy.webp"
+        return "Pictures/cloudy.webp"
     elif "rain" in desc:
-        return "assets/rainy.jpg"
+        return "Pictures/rainy.jpg"
     elif "storm" in desc or "thunder" in desc:
-        return "assets/stormy.jpg"
+        return "Pictures/stormy.jpg"
     elif "snow" in desc:
-        return "assets/snowy.webp"
+        return "Pictures/snowy.webp"
     else:
-        return "assets/WeatherBackground1.jpg"
+        return "Pictures/WeatherBackground1.jpg"
