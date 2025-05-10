@@ -5,7 +5,7 @@ from ui import display_current_weather, display_weekly_forecast, plot_temperatur
 from utils import set_local_background, get_background_image_for_weather
 
 def main():
-    st.markdown(set_local_background("Pictures/WeatherBackground1.jpg"), unsafe_allow_html=True)
+    st.markdown(set_local_background("Pictures/WeatherBackground1.png"), unsafe_allow_html=True)
     st.title("⛅ Weather Forecast AI")
 
     tab1, tab2 = st.tabs(["📍 Weather Forecast", "💬 Chatbot Assistant"])

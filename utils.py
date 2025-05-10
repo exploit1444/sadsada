@@ -48,4 +48,4 @@ def get_background_image_for_weather(description):
     elif "snow" in desc:
         return "Pictures/snowy.webp"
     else:
-        return "Pictures/WeatherBackground1.jpg"
+        return "Pictures/WeatherBackground1.png"
