@@ -4,7 +4,7 @@ from ui import display_current_weather, display_weekly_forecast, plot_temperatur
 from utils import set_local_background, get_background_image_for_weather
 
 def main():
-    set_local_background("Pictures/WeatherBackground1.jpg")
+    st.markdown(set_local_background("Pictures/WeatherBackground1.png"), unsafe_allow_html=True)
     st.sidebar.title("⛅ Weather Forecast AI")
 
     city = st.sidebar.text_input("Enter City Name:").strip().title()
@@ -16,7 +16,7 @@ def main():
 
             if weather_data.get("cod") == 200 and "main" in weather_data:
                 desc = weather_data['weather'][0]['description']
-                set_local_background(get_background_image_for_weather(desc))
+                st.markdown(set_local_background(get_background_image_for_weather(desc)), unsafe_allow_html=True)
 
                 display_current_weather(weather_data)
                 st.subheader("AI Weather Summary")
