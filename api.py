@@ -32,3 +32,5 @@ def generate_weather_description(data):
         return response.generations[0].text.strip()
     except Exception as e:
         return str(e)
+
+__all__ = ['get_weather_data', 'get_weekly_forecast', 'generate_weather_description', 'co']
