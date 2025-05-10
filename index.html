@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>BSCpE</title>
+	<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+	<div class="app">
+		<div class="menu-toggle">
+			<div class="hamburger">
+				<span></span>
+			</div>
+		</div>
+
+	<aside class="sidebar">
+			<h3>Menu</h3>
+			
+			<nav class="menu">
+				<a href="index.html" class="menu-item is-active">Home</a>
+				<a href="index1.html" class="menu-item">About</a>
+				<a href="index2.html" class="menu-item">Class Schedule</a>
+				<!-- <a href="#" class="menu-item">Contact</a> -->
+			</nav>
+
+	</aside>
+
+		<main class="content">
+			<h1>Computer Engineering Journey</h1>
+            <h3>BSCpE 2B-N</h3>
+            <br><br>
+            <center>
+                <img src="images\software-developer-coding.jpg" alt="BSCpE">
+            </center>
+		</main>
+	</div>
+
+	<script>
+		const menu_toggle = document.querySelector('.menu-toggle');
+		const sidebar = document.querySelector('.sidebar');
+
+		menu_toggle.addEventListener('click', () => {
+			menu_toggle.classList.toggle('is-active');
+			sidebar.classList.toggle('is-active');
+		});
+	</script>
+</body>
+</html>
