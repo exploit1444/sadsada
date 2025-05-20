@@ -40,12 +40,12 @@ def get_background_image_for_weather(description):
     if "clear" in desc:
         return "Pictures/sunny.jpg"
     elif "cloud" in desc:
-        return "Pictures/cloudy.webp"
+        return "Pictures/cloudy.png"
     elif "rain" in desc:
-        return "Pictures/rainy.jpg"
+        return "Pictures/rainy.png"
     elif "storm" in desc or "thunder" in desc:
         return "Pictures/stormy.jpg"
     elif "snow" in desc:
-        return "Pictures/snowy.webp"
+        return "Pictures/snowy.png"
     else:
         return "Pictures/WeatherBackground1.jpg"

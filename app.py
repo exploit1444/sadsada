@@ -64,7 +64,7 @@ def main():
                     else:
                         reply = f"Sorry, I couldn't find the weather for **{city_guess}**."
                 else:
-                    prompt = f"You are a weather chatbot. Answer this user query: {user_msg}"
+                    prompt = f"Important: You are a weather chatbot. When a user asks about the weather or provides any weather-related inquiries, respond with accurate and helpful weather information. If the inquiry is not related to weather, reply with: Inquiry not understood. Please ask about the weather. Answer this user query: {user_msg}"
                     response = co.generate(
                         model='command-r-plus',
                         prompt=prompt,
@@ -82,6 +82,7 @@ def main():
             for speaker, message in st.session_state.chat_history:
                 emoji = "🙋‍♂️" if speaker == "You" else "🤖"
                 st.markdown(f"{emoji} **{speaker}:** {message}")
+            
 
 if __name__ == "__main__":
     main()

@@ -16,7 +16,7 @@ def display_weekly_forecast(data):
     st.write("### Weekly Weather Forecast")
     displayed_dates = set()
     c1, c2, c3, c4 = st.columns(4)
-    with c1: st.write("*Day*")
+    with c1: st.write("**Day**")
     with c2: st.write("*Desc*")
     with c3: st.write("*Min Temp*")
     with c4: st.write("*Max Temp*")
