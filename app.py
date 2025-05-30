@@ -6,10 +6,7 @@ from utils import set_local_background, get_background_image_for_weather
 from streamlit_folium import st_folium
 
 def main():
-
-    
     apply_custom_css()
-
     st.markdown(set_local_background("Pictures/WeatherBackground1.jpg"), unsafe_allow_html=True)
     st.title("⛅ Weather Forecast AI")
 
@@ -17,42 +14,45 @@ def main():
 
     # === Tab 1: Weather Forecast ===
     with tab1:
-        st.subheader("Check Real-Time Weather")
-        city = st.text_input("Enter City Name:").strip().title()
+        st.title("☀️ Weather AI App")
 
-        if not city:
-            st.info("👋 Enter a city name above to get the weather.")
-        elif st.button("Get Weather"):
-            with st.spinner('Fetching weather data...'):
-                weather_data = get_weather_data(city)
+        city = st.text_input("Enter city name", "")
 
-                if weather_data.get("cod") == 200 and "main" in weather_data:
-                    desc = weather_data['weather'][0]['description']
-                    st.markdown(set_local_background(get_background_image_for_weather(desc)), unsafe_allow_html=True)
+        # Initialize session state for weather button
+        if "weather_clicked" not in st.session_state:
+            st.session_state["weather_clicked"] = False
 
-                    display_current_weather(weather_data)
-                    st.subheader("AI Weather Summary")
-                    st.write(generate_weather_description(weather_data))
+        if st.button("Get Weather"):
+            st.session_state["weather_clicked"] = True
 
-                    lat, lon = weather_data['coord']['lat'], weather_data['coord']['lon']
-                    forecast_data = get_weekly_forecast(lat, lon)
+        if st.session_state["weather_clicked"] and city:
+            weather_data = get_weather_data(city)
 
-                    if forecast_data.get("cod") != "404":
-                        display_weekly_forecast(forecast_data)
-                        plot_temperature_chart(forecast_data)
+            if weather_data and weather_data.get("cod") != "404":
+                display_current_weather(weather_data)
 
-                        st.subheader("🗺️ Weather Map")
-                        weather_map = create_weather_map(lat, lon, city, weather_data)
+                lat = weather_data["coord"]["lat"]
+                lon = weather_data["coord"]["lon"]
 
-                    if weather_map:
-                        st.markdown('<div class="map-container">', unsafe_allow_html=True)
-                        st.subheader("🗺️ Weather Map View")
-                        st_folium(weather_map, width=700, height=450)
-                        st.markdown('</div>', unsafe_allow_html=True)
-                    else:
-                        st.error("Error fetching forecast!")
+                forecast_data = get_weekly_forecast(lat, lon)
+
+                if forecast_data and forecast_data.get("cod") != "404":
+                    display_weekly_forecast(forecast_data)
+                    plot_temperature_chart(forecast_data)
                 else:
-                    st.error(f"‼ Error: {weather_data.get('message', 'City not found')} ‼")
+                    st.warning("⚠️ Forecast data not available.")
+
+                weather_map = create_weather_map(lat, lon, city, weather_data)
+
+                if weather_map:
+                    st.markdown('<div class="map-container">', unsafe_allow_html=True)
+                    st.subheader("🗺️ Weather Map View")
+                    st_folium(weather_map, width=700, height=450)
+                    st.markdown('</div>', unsafe_allow_html=True)
+                else:
+                    st.error("⚠️ Failed to load the weather map.")
+            else:
+                st.error("City not found.")
 
     # === Tab 2: Chatbot Assistant ===
     with tab2:
@@ -103,6 +103,7 @@ def main():
             for speaker, message in st.session_state.chat_history:
                 emoji = "🙋‍♂️" if speaker == "You" else "🤖"
                 st.markdown(f"{emoji} **{speaker}:** {message}")
+
+
 if __name__ == "__main__":
     main()
-    

@@ -34,4 +34,4 @@ def generate_weather_description(data):
     except Exception as e:
         return str(e)
 
-__all__ = ['get_weather_data', 'get_weekly_forecast', 'generate_weather_description', 'co']
+__all__ = ['get_weather_data', 'get_weekly_forecast', 'generate_weather_description', 'create_weather_map', 'co']
