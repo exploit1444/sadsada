@@ -14,7 +14,6 @@ def main():
 
     # === Tab 1: Weather Forecast ===
     with tab1:
-        st.title("☀️ Weather AI App")
 
         city = st.text_input("Enter city name", "")
 
