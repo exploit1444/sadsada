@@ -55,7 +55,6 @@ def main():
 
     # === Tab 2: Chatbot Assistant ===
     with tab2:
-        st.subheader("Weather Chatbot")
 
         if "chat_history" not in st.session_state:
             st.session_state.chat_history = []
