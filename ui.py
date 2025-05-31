@@ -28,6 +28,7 @@ def apply_custom_css():
         backdrop-filter: blur(8px);
         border: 1px solid rgba(255, 255, 255, 0.18);
         color: white;
+        text-shadow: 1px 1px 2px black;
     }
 
     .metric-card {
@@ -52,7 +53,7 @@ def apply_custom_css():
         margin: 5px;
         text-align: center;
         border: 1px solid rgba(255, 255, 255, 0.2);
-        color: white;
+        color: Black;
     }
 
     .ai-summary {

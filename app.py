@@ -6,9 +6,12 @@ from utils import set_local_background, get_background_image_for_weather
 from streamlit_folium import st_folium
 
 def main():
-    apply_custom_css()
+    
     st.markdown(set_local_background("Pictures/WeatherBackground1.jpg"), unsafe_allow_html=True)
     st.title("⛅ Weather Forecast AI")
+
+
+    apply_custom_css()
 
     tab1, tab2 = st.tabs(["📍 Weather Forecast", "💬 Chatbot Assistant"])
 
@@ -27,8 +30,9 @@ def main():
         if st.session_state["weather_clicked"] and city:
             weather_data = get_weather_data(city)
 
-            if weather_data and weather_data.get("cod") != "404":
-                display_current_weather(weather_data)
+            if weather_data.get("cod") == 200 and "main" in weather_data:
+                desc = weather_data['weather'][0]['description']
+                st.markdown(set_local_background(get_background_image_for_weather(desc)), unsafe_allow_html=True)
 
                 lat = weather_data["coord"]["lat"]
                 lon = weather_data["coord"]["lon"]
