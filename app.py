@@ -70,31 +70,23 @@ def main():
                 st.session_state.chat_history.append(("You", user_msg))
 
                 # Attempt to extract a city from user message
-                matches = re.findall(r"\b[A-Z][a-z]+(?:\s[A-Z][a-z]+)*\b", user_msg)
-                city_guess = matches[-1] if matches else None
+                prompt = (
+                    "Important: You are a weather chatbot. "
+                    "When a user asks about the weather or provides any weather-related inquiries, "
+                    "respond with accurate and helpful weather information, including forecasts. "
+                    "If the user provides a city, include relevant details. "
+                    "If the inquiry is not related to weather, reply with: "
+                    "'Inquiry not understood. Please ask about the weather.'\n\n"
+                    f"User: {user_msg}"
+                )
 
-                if city_guess:
-                    weather_data = get_weather_data(city_guess)
-                    if weather_data.get("cod") == 200:
-                        reply = generate_weather_description(weather_data)
-                    else:
-                        reply = f"😕 Sorry, I couldn't find the weather for **{city_guess}**."
-                else:
-                    prompt = (
-                        "Important: You are a weather chatbot. "
-                        "When a user asks about the weather or provides any weather-related inquiries, "
-                        "respond with accurate and helpful weather information. "
-                        "If the inquiry is not related to weather, reply with: "
-                        "'Inquiry not understood. Please ask about the weather.'\n\n"
-                        f"Answer this user query: {user_msg}"
-                    )
-                    response = co.generate(
-                        model="command-r-plus",
-                        prompt=prompt,
-                        max_tokens=80,
-                        temperature=0.7,
-                    )
-                    reply = response.generations[0].text.strip()
+                response = co.generate(
+                    model="command-r-plus",
+                    prompt=prompt,
+                    max_tokens=100,
+                    temperature=0.7,
+                )
+                reply = response.generations[0].text.strip()
 
                 st.session_state.chat_history.append(("Bot", reply))
 
